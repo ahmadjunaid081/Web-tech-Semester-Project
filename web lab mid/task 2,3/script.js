@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- UTILITY FUNCTIONS FOR CART ---
     const getCart = () => JSON.parse(localStorage.getItem('beShopCart')) || [];
     const saveCart = (cart) => localStorage.setItem('beShopCart', JSON.stringify(cart));
 
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- MINI CART LOGIC ---
     const miniCartDropdown = document.getElementById('mini-cart-dropdown');
     
     const renderMiniCart = () => {
@@ -75,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- MAIN ADD TO CART FUNCTION ---
     const addToCart = (productCard) => {
         const id = productCard.dataset.id;
         const name = productCard.dataset.name;
@@ -95,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleMiniCart(true); 
     };
 
-    // --- PAGE-SPECIFIC INITIALIZATION ---
     const bodyId = document.body.id;
 
     if (bodyId === 'home-page') {
@@ -184,6 +180,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- GLOBAL INITIALIZATION ---
     updateHeaderCart();
 });

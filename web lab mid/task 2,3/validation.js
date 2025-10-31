@@ -1,8 +1,7 @@
 $(document).ready(function () {
     const form = $('#checkout-form');
-    if (form.length === 0) return; // Exit if not on checkout page
+    if (form.length === 0) return;
 
-    // --- HELPER FUNCTIONS ---
     const showError = (input, message) => {
         const feedback = input.next('.invalid-feedback');
         input.removeClass('is-valid').addClass('is-invalid');
@@ -14,7 +13,6 @@ $(document).ready(function () {
         input.next('.invalid-feedback').text('');
     };
 
-    // --- INDIVIDUAL VALIDATION FUNCTIONS ---
     const validateFullName = () => {
         const field = $('#fullName');
         if (field.val().trim().length < 3) {
@@ -112,7 +110,6 @@ $(document).ready(function () {
         return isCardValid;
     };
 
-    // --- EVENT BINDING FOR REAL-TIME VALIDATION ---
     $('#fullName').on('keyup blur', validateFullName);
     $('#email').on('keyup blur', validateEmail);
     $('#phone').on('keyup blur', validatePhone);
@@ -125,9 +122,7 @@ $(document).ready(function () {
     $('input[name="paymentMethod"]').on('change', validateCreditCardFields);
 
 
-    // --- MAIN FORM SUBMISSION LOGIC ---
     const validateForm = () => {
-        // Run all validation functions once to get a final status
         const isNameValid = validateFullName();
         const isEmailValid = validateEmail();
         const isPhoneValid = validatePhone();
@@ -144,22 +139,19 @@ $(document).ready(function () {
     form.on('submit', function (e) {
         e.preventDefault();
         if (validateForm()) {
-            // If validation is successful
             alert('Order placed successfully! (This is a demo)');
-            localStorage.removeItem('beShopCart'); // Clear cart
+            localStorage.removeItem('beShopCart');
             window.location.href = 'index.html';
         } else {
-            // Find the first element with an error and scroll to it
             const firstError = $('.is-invalid').first();
             if (firstError.length) {
                 $('html, body').animate({
-                    scrollTop: firstError.offset().top - 120 // 120px offset for sticky header
+                    scrollTop: firstError.offset().top - 120
                 }, 500);
             }
         }
     });
 
-    // --- INITIAL UI SETUP ---
     $('#terms-check').on('change', function () {
         $('#place-order-btn').prop('disabled', !$(this).is(':checked'));
     });
