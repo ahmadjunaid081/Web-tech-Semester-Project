@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    
     const getCart = () => JSON.parse(localStorage.getItem('beShopCart')) || [];
     const saveCart = (cart) => localStorage.setItem('beShopCart', JSON.stringify(cart));
 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const miniCartDropdown = document.getElementById('mini-cart-dropdown');
-
+    
     const renderMiniCart = () => {
         const cart = getCart();
         if (!miniCartDropdown) return;
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         saveCart(cart);
         updateHeaderCart();
-        toggleMiniCart(true);
+        toggleMiniCart(true); 
     };
 
     const bodyId = document.body.id;
@@ -102,59 +102,86 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Testimonial Slider Logic
-        let slideIndex = 1;
-        let slideInterval;
 
-        const slides = document.getElementsByClassName("testimonial-slide");
-        const dots = document.getElementsByClassName("dot");
+        const container = document.querySelector('.testimonial-slider-container');
+        const viewport = document.querySelector('.testimonial-slider-viewport');
+        const slides = Array.from(document.querySelectorAll('.testimonial-slide'));
+        const viewMoreBtn = document.getElementById('view-more-testimonials');
+        
+        if (container && viewport && slides.length > 0 && viewMoreBtn) {
+            let currentIndex = 0;
+            let slideInterval;
+            let isSliderActive = false;
 
-        function showSlides(n) {
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
+            const itemsPerView = () => window.innerWidth >= 992 ? 2 : 1;
+            
+            const showSlides = () => {
+                const items = itemsPerView();
+                const totalSlides = slides.length;
+                
+                slides.forEach(slide => slide.style.display = 'block');
 
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].classList.remove("active-slide");
-            }
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
+                const slideWidth = viewport.clientWidth / items;
+                const newTransform = -currentIndex * slideWidth;
+                viewport.style.transform = `translateX(${newTransform}px)`;
 
-            slides[slideIndex - 1].classList.add("active-slide");
-            dots[slideIndex - 1].className += " active";
-        }
+                slides.forEach((slide, index) => {
+                    if (index >= currentIndex && index < currentIndex + items) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+            };
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-            resetInterval();
-        }
+            const nextSlide = () => {
+                const items = itemsPerView();
+                const totalSlides = slides.length;
+                if (currentIndex < totalSlides - items) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                showSlides();
+            };
 
-        window.currentSlide = function (n) {
-            showSlides(slideIndex = n);
-            resetInterval();
-        }
+            const startSlider = () => {
+                if (!isSliderActive) {
+                    isSliderActive = true;
+                    slideInterval = setInterval(nextSlide, 2000); // Change every 5 seconds
+                    viewMoreBtn.textContent = 'Pause Slider';
+                }
+            };
 
-        function startInterval() {
-            slideInterval = setInterval(() => {
-                plusSlides(1);
-            }, 5000); // Change image every 5 seconds
-        }
+            const stopSlider = () => {
+                isSliderActive = false;
+                clearInterval(slideInterval);
+                viewMoreBtn.textContent = 'Resume Slider';
+            };
 
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
+            viewMoreBtn.addEventListener('click', () => {
+                if (!container.classList.contains('show-all')) {
+                    container.classList.add('show-all');
+                    startSlider();
+                } else {
+                    if (isSliderActive) {
+                        stopSlider();
+                    } else {
+                        startSlider();
+                    }
+                }
+            });
 
-        if (slides.length > 0) {
-            showSlides(slideIndex);
-            startInterval();
+            // Initial setup
+            showSlides();
+            window.addEventListener('resize', showSlides);
         }
     }
 
     if (bodyId === 'cart-page') {
         const cartContainer = document.getElementById('cart-container');
         let cart = getCart();
-
+        
         const renderCart = () => {
             if (cart.length === 0) {
                 cartContainer.innerHTML = `<div class="col-12 text-center"><p class="fs-4">Your cart is empty.</p><a href="index.html" class="btn btn-primary">Continue Shopping</a></div>`;
@@ -184,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="d-flex justify-content-between fw-bold border-top pt-2"><span>Total</span><span>£${subtotal.toFixed(2)}</span></div>
                     <a href="checkout.html" class="btn btn-primary w-100 mt-3">Proceed to checkout</a>
                 </div></div>`;
-
+            
             cartContainer.querySelectorAll('.quantity-input').forEach(input => {
                 input.addEventListener('change', (e) => {
                     const id = e.target.closest('.cart-item-row').dataset.id;
@@ -215,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cart = getCart();
 
         if (cart.length === 0 && orderSummaryEl) {
-            window.location.href = 'index.html'; return;
+             window.location.href = 'index.html'; return;
         }
 
         if (orderSummaryEl) {

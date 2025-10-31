@@ -683,24 +683,39 @@ img {
 /* --- Testimonials Section --- */
 #testimonials {
     padding-bottom: var(--spacing-xl);
-    background-color: var(--background-actions);
 }
 
 .testimonial-slider-container {
-    max-width: 800px;
     position: relative;
-    margin: auto;
     padding: var(--spacing-l);
-    min-height: 280px;
+    background-color: var(--background-actions);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    max-height: 350px; /* Initial collapsed height */
+    transition: max-height 0.7s ease-in-out;
+    overflow: hidden;
+}
+
+.testimonial-slider-container.show-all {
+    max-height: 500px; /* Expanded height */
+}
+
+.testimonial-slider-viewport {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .testimonial-slide {
-    display: none;
+    flex: 0 0 100%;
+    padding: 0 var(--spacing-m);
     text-align: center;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    position: relative;
 }
 
-.testimonial-slide.active-slide {
-    display: block;
+.testimonial-slide.active {
+    opacity: 1;
 }
 
 .testimonial-img {
@@ -725,9 +740,6 @@ img {
     font-style: italic;
     margin-bottom: var(--spacing-m);
     color: var(--text-dark);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .testimonial-author {
@@ -736,43 +748,16 @@ img {
     font-size: 1rem;
 }
 
-.testimonial-dots {
-    text-align: center;
-    padding-bottom: var(--spacing-m);
+#view-more-testimonials {
+    background-color: #ff0000 !important;
+    border-color: #6c757d !important;
+    margin-top: var(--spacing-l);
 }
 
-.dot {
-    cursor: pointer;
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: #ccc;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+#view-more-testimonials:hover {
+    background-color: #5a6268 !important;
+    border-color: #545b62 !important;
 }
-
-.dot.active,
-.dot:hover {
-    background-color: var(--primary-color);
-}
-
-/* Fading animation */
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {
-        opacity: .4
-    }
-
-    to {
-        opacity: 1
-    }
-}
-
 
 #Footer {
     background-color: var(--footer-background);
@@ -860,6 +845,12 @@ img {
 }
 
 /* --- Responsive Design --- */
+@media (min-width: 992px) {
+    .testimonial-slide {
+        flex: 0 0 50%; 
+    }
+}
+
 @media (max-width: 992px) {
     .menu {
         display: none;
@@ -932,8 +923,8 @@ img {
     #features {
         grid-template-columns: 1fr;
     }
-
+    
     .testimonial-slider-container {
-        min-height: 320px;
+        max-height: 320px;
     }
 }
