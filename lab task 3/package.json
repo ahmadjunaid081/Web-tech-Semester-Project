@@ -1,0 +1,18 @@
+{
+  "name": "beshop-express",
+  "version": "1.0.0",
+  "description": "BeShop E-commerce Application built with Express.js and EJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ecommerce", "express", "ejs", "shop"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.2.1"
+  }
+}

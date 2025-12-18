@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body id="cart-page">
+    <div id="wrapper">
+        <div id="Header_wrapper" class="subheader-bg">
+            <%- include('partials/header') %>
+                <div id="Subheader">
+                    <div class="container">
+                        <h1>Cart</h1>
+                    </div>
+                </div>
+        </div>
+        <main id="Content" class="container py-5">
+            <div class="progress-header">
+                <div class="step-item active"><a href="/cart"><span>1</span> Cart</a></div>
+                <div class="step-item"><a href="/checkout"><span>2</span> Checkout</a></div>
+                <div class="step-item"><span>3</span> Order</div>
+            </div>
+            <div class="row g-5" id="cart-container">
+                <!-- Cart content will be injected here by script.js -->
+            </div>
+        </main>
+        <%- include('partials/footer') %>
+    </div>
+    <%- include('partials/scripts', { includeValidation: false }) %>
+</body>
+
+</html>

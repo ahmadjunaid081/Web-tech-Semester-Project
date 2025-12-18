@@ -1,0 +1,28 @@
+{
+  "name": "assignment-3-mongodb",
+  "version": "1.0.0",
+  "description": "BeShop E-commerce with MongoDB, Mongoose, Pagination & Filtering",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js",
+    "seed": "node seeds/productSeeder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecommerce",
+    "express",
+    "mongodb",
+    "mongoose",
+    "pagination",
+    "filtering"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.2"
+  }
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body id="home-page">
+    <div id="wrapper">
+        <div id="Header_wrapper">
+            <%- include('partials/header') %>
+                <section id="hero">
+                    <div class="hero-image-layer">
+                        <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/home_shop_slider_txt.png"
+                            alt="Style & Beauty" class="hero-text-img">
+                        <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/home_shop_slider_pic.png"
+                            alt="Red high-heeled shoe with a bow" class="hero-shoe-img">
+                    </div>
+                </section>
+        </div>
+        <main id="Content">
+            <section id="features" class="container">
+                <div class="feature-card">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/03/home_shop_box_1.jpg"
+                        alt="Woman in Armani swimwear on a beach.">
+                    <div class="feature-text">
+                        <span class="subtitle">Armani</span>
+                        <h2>Spring<br>Summer '14</h2>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/03/home_shop_box_2.jpg"
+                        alt="Woman in a black Dolce & Gabbana outfit.">
+                    <div class="feature-text">
+                        <span class="subtitle">Dolce & Gabbana</span>
+                        <h2>Fall<br>Winter '13/14</h2>
+                    </div>
+                </div>
+                <div class="feature-card sale">
+                    <div class="feature-text">
+                        <span class="subtitle">Sale</span>
+                        <h2>Prices cut<br>Up to 70%</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products for HER - Loaded from MongoDB -->
+            <section id="for-her" class="container product-section">
+                <h2 class="section-title">New products for her</h2>
+                <div class="product-grid-static">
+                    <% if (productsForHer && productsForHer.length> 0) { %>
+                        <% productsForHer.forEach(function(product) { %>
+                            <%- include('partials/product-card', { product: product }) %>
+                                <% }); %>
+                                    <% } else { %>
+                                        <div class="no-products">
+                                            <p>No products available. Please seed the database.</p>
+                                        </div>
+                                        <% } %>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="/shop?gender=for-her" class="btn btn-secondary">View All For Her →</a>
+                </div>
+            </section>
+
+            <!-- Products for HIM - Loaded from MongoDB -->
+            <section id="for-him" class="container product-section">
+                <h2 class="section-title">New products for him</h2>
+                <div class="product-grid-static">
+                    <% if (productsForHim && productsForHim.length> 0) { %>
+                        <% productsForHim.forEach(function(product) { %>
+                            <%- include('partials/product-card', { product: product }) %>
+                                <% }); %>
+                                    <% } else { %>
+                                        <div class="no-products">
+                                            <p>No products available. Please seed the database.</p>
+                                        </div>
+                                        <% } %>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="/shop?gender=for-him" class="btn btn-secondary">View All For Him →</a>
+                </div>
+            </section>
+
+            <section id="social-proof">
+                <div class="container logos">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/client_1.png"
+                        alt="Zeisson logo">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/client_2.png"
+                        alt="Excerpt logo">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/client_3.png"
+                        alt="Folive logo">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/client_4.png"
+                        alt="Koparu logo">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/client_5.png"
+                        alt="Sohau logo">
+                    <img src="https://themes.muffingroup.com/be/shop/wp-content/uploads/2015/04/client_6.png"
+                        alt="Barook logo">
+                </div>
+            </section>
+
+            <!-- Customer Testimonials Section -->
+            <section id="testimonials" class="container product-section">
+                <h2 class="section-title">Customer Testimonials</h2>
+                <div class="testimonial-slider-container">
+                    <div class="testimonial-slider-viewport">
+                        <div class="testimonial-slide">
+                            <img src="https://i.pravatar.cc/80?img=1" alt="Customer Jane Doe" class="testimonial-img">
+                            <div class="testimonial-rating">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <p class="testimonial-text">"Absolutely love the quality and design. My order arrived faster
+                                than expected. Will definitely be shopping here again!"</p>
+                            <h4 class="testimonial-author">- Ely Ramz Mian</h4>
+                        </div>
+                        <div class="testimonial-slide">
+                            <img src="https://i.pravatar.cc/80?img=2" alt="Customer John Smith" class="testimonial-img">
+                            <div class="testimonial-rating">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span
+                                    class="star-empty">☆</span>
+                            </div>
+                            <p class="testimonial-text">"Great selection of products. The website is easy to navigate,
+                                and the checkout process was a breeze. Highly recommended."</p>
+                            <h4 class="testimonial-author">- Haseeb CLG</h4>
+                        </div>
+                        <div class="testimonial-slide">
+                            <img src="https://i.pravatar.cc/80?img=3" alt="Customer Sarah Lee" class="testimonial-img">
+                            <div class="testimonial-rating">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <p class="testimonial-text">"I'm so impressed with the customer service. They were very
+                                helpful with my sizing questions. The fit is perfect!"</p>
+                            <h4 class="testimonial-author">- Haris John Wick</h4>
+                        </div>
+                        <div class="testimonial-slide">
+                            <img src="https://i.pravatar.cc/80?img=4" alt="Customer Mike Chen" class="testimonial-img">
+                            <div class="testimonial-rating">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <p class="testimonial-text">"The 'For Him' collection is fantastic. Found exactly what I was
+                                looking for. The quality of the fabric is top-notch."</p>
+                            <h4 class="testimonial-author">- Kami Joyiyaa</h4>
+                        </div>
+                    </div>
+                </div>
+                <button id="view-more-testimonials" class="btn btn-secondary">View More & Start Slider</button>
+            </section>
+        </main>
+        <%- include('partials/footer') %>
+    </div>
+    <%- include('partials/scripts', { includeValidation: false }) %>
+</body>
+
+</html>

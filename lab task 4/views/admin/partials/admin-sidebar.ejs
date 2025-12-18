@@ -1,0 +1,36 @@
+<aside class="admin-sidebar">
+    <div class="sidebar-brand">
+        <h2>Be<span>Shop</span></h2>
+        <small>Admin Panel</small>
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+            <li>
+                <a href="/admin"
+                    class="<%= typeof currentPage !== 'undefined' && currentPage === 'dashboard' ? 'active' : '' %>">
+                    <i class="bi bi-grid-1x2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/products"
+                    class="<%= typeof currentPage !== 'undefined' && currentPage === 'products' ? 'active' : '' %>">
+                    <i class="bi bi-box-seam"></i>
+                    <span>Products</span>
+                </a>
+            </li>
+            <li>
+                <a href="/admin/products/add"
+                    class="<%= typeof currentPage !== 'undefined' && currentPage === 'add-product' ? 'active' : '' %>">
+                    <i class="bi bi-plus-circle"></i>
+                    <span>Add Product</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="sidebar-footer">
+        <a href="/" class="btn btn-sm w-100">
+            <i class="bi bi-arrow-left me-2"></i>Back to Store
+        </a>
+    </div>
+</aside>
