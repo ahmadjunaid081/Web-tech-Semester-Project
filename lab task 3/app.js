@@ -20,7 +20,7 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🛍️  BeShop server is running at http://localhost:${PORT}`);
+    console.log(`BeShop server is running at http://localhost:${PORT}`);
 });
 
 module.exports = app;
